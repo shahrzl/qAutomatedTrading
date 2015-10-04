@@ -1,16 +1,38 @@
+Pre-requisite: Have q installed. To install q, go to www.kx.com.
 
-###Preview of version 0.4
-======================
 
-####What's new?
+How to run this portfolio tracker for backtesting purpose:
 
-* Enhancements to support strategy backtesting by replaying historical tick data.
-* Historical tick data is sourced from http://www.netfonds.no. Of course you can use other sources, but may require editing of timersvc.q under /histTickData directory.
+1.Run ticker plant.
 
-Screenshot:
+        >q tick.q sym . -p 5010
+        
+tick.q source code can be downloaded from http://code.kx.com/wsvn/code/kx/ .
 
-![ptr0 2-2](https://cloud.githubusercontent.com/assets/9425771/7025990/95c51e58-dd79-11e4-8e61-296a486a758f.png)
+2.Run Timer Service. The code is available under /hisTickData directory. 
 
-![ptr0 2agg](https://cloud.githubusercontent.com/assets/9425771/7026025/db9a0380-dd79-11e4-802d-fedac9b219bb.png)
+        >q timersvc.q [csv file] [sym] 
+        
+        example:
+        q timersvc.q tradeGE.N0821.csv GE
+ 
 
+3.Run execsvc.q.
+
+        >q execsvc.q
+
+4.Run pnlsvc.q
+
+        >q pnlsvc.q
+        
+        in the q prompt, run
+        q)\l insertCCY.q
+        
+5.Open portfolioTracker.html in your browser.
+
+6.Optional. Run this if you want to save position table.
+
+        >q savePos.q
+        
+  The saved table will be automatically loaded next time you run pnlsvc.q
 
